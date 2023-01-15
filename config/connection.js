@@ -16,4 +16,5 @@ connect(connectionString, {
 // Logs mongo queries being executed
 mongoose.set("debug", true);
 
+// Export connection module
 module.exports = connection;

@@ -1,4 +1,4 @@
-// const { ObjectId } = require('mongoose').Types;
+const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require("../models");
 
 module.exports = {
@@ -50,7 +50,7 @@ module.exports = {
       .then((dbUserData) => {
         if (!dbUserData) {
           res.status(404).json({
-            message: "No user locatded with this id.",
+            message: "No user located with this id.",
           });
           return;
         }

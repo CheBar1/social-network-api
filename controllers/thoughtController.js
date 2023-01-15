@@ -24,7 +24,7 @@ module.exports = {
         if (!dbThoughtData) {
           res
             .status(404)
-            .json({ message: "No thoughts with this particular ID!" });
+            .json({ message: "No thoughts with this ID!" });
           return;
         }
         res.json(dbThoughtData);
@@ -39,7 +39,7 @@ module.exports = {
   createThought({ params, body }, res) {
     Thought.create(body)
       .then(({ _id }) => {
-        return Users.findOneAndUpdate(
+        return User.findOneAndUpdate(
           { _id: params.userId },
           { $push: { thought: _id } },
           { new: true }
@@ -49,7 +49,7 @@ module.exports = {
         if (!dbThoughtData) {
           res
             .status(404)
-            .json({ message: "No thoughts with this particular ID!" });
+            .json({ message: "No thoughts with this ID!" });
           return;
         }
         res.json(dbThoughtData);
