@@ -87,7 +87,7 @@ npm start
 * Uses functionality to format queried timestamps properly.
 
 ## Video Demonstration
-[Click here to see the demo video!](https://www…)
+[Click here to see the demo video!](https://drive.google.com/file/d/1QFEJ4rg9yn1scgb3ct0I9HJVaRfbJNXd/view)
  
 ## Contact Me
 * GitHub: [CheBar1](https://github.com/CheBar1)
