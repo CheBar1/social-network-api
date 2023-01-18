@@ -6,7 +6,7 @@ module.exports = {
   getAllUsers(req, res) {
     User.find({})
       // populate users thoughts, remove __version from visual
-      .populate({ path: "thoughts", select: "-__v" })
+      // .populate({ path: "thoughts", select: "-__v" })
       // populate user friends, remove __version from visual
       .populate({ path: "friends", select: "-__v" })
       .select("-__v")
@@ -23,6 +23,7 @@ module.exports = {
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
       .populate({ path: "thoughts", select: "-__v" })
+      .populate({ path: "friends", select: "-__v" })
       .select("-__v")
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => {
@@ -81,8 +82,8 @@ module.exports = {
   // Add a friend
   addFriend({ params }, res) {
     User.findOneAndUpdate(
-      { _id: params.userId },
-      { $push: { friends: params.friendId } },
+      { _id: params.id },
+      { $addToSet: { friends: params.friendId } },
       { new: true, runValidators: true }
     )
       .then((dbUserData) => {
@@ -98,7 +99,7 @@ module.exports = {
   // Delete friend
   deleteFriend({ params }, res) {
     User.findOneAndUpdate(
-      { _id: params.userId },
+      { _id: params.id },
       { $pull: { friends: params.friendId } },
       { new: true }
     )
